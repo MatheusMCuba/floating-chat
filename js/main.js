@@ -1,18 +1,37 @@
 $(function(){
     setTimeout(function(){
-       $('.chat-bubble').toggleClass('active');
+       $('.chat-bubble').addClass('active');
     }, 1000);
-    $('.thumb').click(function(){
+
+    $(document).on('click', '.thumb:not(.up)', function(){
       let self = this;
        $('.chat-bubble').removeClass('active');
 
-       $(self).toggleClass('in-box');
+       $(self).addClass('in-box');
        setTimeout(function(){
-          $(self).toggleClass('up');
-          $('.box').toggleClass('active');
+          $(self).addClass('up');
+          $('.box').addClass('active');
+          $('.chat-bubble').addClass('close');
        }, 300)
     });
+
+    
+    $(document).on('click', '.thumb.up', function(){
+        console.log('Not')
+        let self = this;
+        $(self).removeClass('up');
+        $('.box').removeClass('active');
+        setTimeout(function(){
+            $(self).removeClass('in-box');
+         }, 300)
+      });
+      $('#send').click(function(){
+          console.log('Cliq');
+      });
     $('.chat-bubble span').click(function(){
-        $('.chat-bubble').toggleClass('active');
+        $('.chat-bubble').removeClass('active');
+        setTimeout(function(){
+               $('.chat-bubble').addClass('close');
+        }, 300)
     });
 });
