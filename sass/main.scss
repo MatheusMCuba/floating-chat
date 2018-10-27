@@ -180,7 +180,9 @@ body{
          background-color: white;
          margin: 4px 4px;
          padding: 10px 10px;
-         overflow: auto;
+         overflow-y: auto;
+         overflow-x: hidden;
+
 
          &::-webkit-scrollbar {
             width: 5px;
@@ -196,27 +198,39 @@ body{
 
          .message{            
             width: 100%;
-
+            margin-top: 5px;
+            opacity: 0;
+            transition: 0.3s;
+            
+            
             &.left{
                 float: left;
                 text-align: left;
+                transform: translateX(-50px);
+                
                 .message-content{
                     float: left;
                     border-top-left-radius: 0;
                 }
             }
-
+            
             &.right{
                 float: right;
                 text-align: right;
+                transform: translateX(50px);
+                
                 .message-content{
                     float: right;
                     border-top-right-radius: 0;
                     color: white;
-                     background: linear-gradient(296deg, #f54654, #fd8966);
+                    background: linear-gradient(296deg, #f54654, #fd8966);
                 }
             }
-
+            
+            &.sended{
+                opacity: 1;
+                transform: translateX(0);
+            }
              .message-content{
                 padding: 10px;
                 background-color: #edeeef;
@@ -232,9 +246,7 @@ body{
                  clear: both;
                  color: gray;
                  font-size: 12px;
-             }
-
-             
+             }             
          }
      }
 
@@ -262,10 +274,10 @@ body{
 
             &:focus {
                 outline-color: transparent !important;
-                outline-style: none !important;
+                outline-style: none !important; 
               }
 
-             &:before{
+             &:before{ 
                  content: '';
                  position: absolute;
                  width: 50%;
