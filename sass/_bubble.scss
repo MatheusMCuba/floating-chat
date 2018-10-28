@@ -1,0 +1,82 @@
+@import 'variables';
+@import 'mixins';
+
+$translateX : ($box-width/2) - ($bubble-size/2) - ($bubble-border-size * 2);
+$translateY : $box-height - ($bubble-size/2) - ($bubble-border-size * 2);
+
+chat-bubble{
+    position: relative;
+    width: $bubble-size;
+    height: $bubble-size;
+    border-radius: 50%;
+    border: $bubble-border-size solid white;
+    background: $bot-image no-repeat;
+    background-size: cover;
+    pointer-events: initial;
+    float: right;
+    cursor: pointer;
+    opacity: 0;
+
+    @include transition(0.3s);
+    @include transform(scale(0.2));    
+    @include box-shadow($default-shadow-strong);
+
+    &.loaded{
+        opacity: 1;
+        @include transform(scale(1));
+    }
+    
+    &.in-box{
+        box-shadow: none;
+        transform: translateX(-$translateX);
+    }
+
+    &.up{
+        transform: translate(-$translateX, -$translateY);
+    }
+}
+
+bubble-message{
+    position: relative;
+    float: left;
+    max-width: 250px;
+    padding: 15px;
+    border-radius: 13px;
+    border-bottom-right-radius: 0;
+    background-color: white;
+    margin-right: 20px;
+    opacity: 0;
+    transform: translateX(50px);
+    pointer-events: initial !important;
+    
+    @include transition(0.2s);
+    @include box-shadow($default-shadow-light);
+
+    &.close{
+        display: none;
+    }
+    
+    &.active{
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    span:first-child{
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        top: -7.5px;
+        left: -7.5px;
+        border-radius: 50%;
+        background-color: rgba(211, 211, 211, 0.8);
+        color: white;
+        font-size: 7px;
+        cursor: pointer;
+
+        @include flex-center;
+
+        &:hover{
+            background-color: rgb(211, 211, 211);
+        }
+     }
+ }

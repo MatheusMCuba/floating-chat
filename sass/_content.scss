@@ -1,0 +1,84 @@
+@import 'variables';
+@import 'mixins';
+
+$main-outer: ($main-padding * 2) + ($main-margin * 2);
+
+chat-content{
+    width: calc(100% - #{$main-outer});
+    height: calc(100% - #{$main-outer + $header-height + $footer-height + ($footer-padding * 2)});
+    display: inline-block;
+    background-color: white;
+    margin: $main-margin;
+    padding: $main-padding;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    @include scrollbar(5px, white, $secundary-color);
+
+    message-wrapper{            
+        width: 100%;
+        margin-top: 5px;
+        opacity: 0;
+        transition: 0.3s;
+        text-align: left;
+
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;           
+        
+        message-content {
+            padding: 10px;
+            background-color: $secundary-color;
+            border-radius: 13px;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;
+            width: auto;
+            max-width: 80%;
+            height: auto;
+            display: inline-block;
+            position: relative;
+        }
+
+        message-info{
+            float: none;
+            clear: both;
+            color: gray;
+            font-size: 12px;
+            display: inherit;
+            margin-top: 3px;
+        }       
+
+        &.left{
+            float: left;
+
+            message-content{
+                float: left;
+                border-top-left-radius: 0;
+            }
+
+            @include transform(translateX(-50px));
+        }
+        
+        &.right {
+            float: right;
+            
+            message-content {
+                float: right;
+                border-top-right-radius: 0;
+                color: white;
+                background: $main-background;
+            }
+            
+            message-info {
+                text-align: right;
+            }
+
+            @include transform(translateX(50px));
+        }
+
+        &.sended {
+            opacity: 1;
+            @include transform(translateX(0));
+        }
+    }
+}

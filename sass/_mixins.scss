@@ -1,0 +1,58 @@
+@mixin box-shadow ($value) {
+    -webkit-box-shadow: $value;
+    -moz-box-shadow: $value;
+    box-shadow: $value;
+}
+
+@mixin transition($value) {
+    -webkit-transition: $value;
+    -moz-transition: $value;
+    transition: $value; 
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin transform($value) {
+    -webkit-transform: $value;
+    -moz-transform: $value;
+    -o-transform: $value;
+    -ms-transform: $value;
+    transform: $value;
+}
+
+@mixin scrollbar($width, $track-color, $thumb-color) {
+    &::-webkit-scrollbar {
+        width: $width;
+    }
+       
+    &::-webkit-scrollbar-track {
+        background: $track-color;
+    }
+       
+    &::-webkit-scrollbar-thumb {
+        background: $thumb-color;
+    }
+}
+
+@mixin breakpoint($point) {
+    @if $point == desktop {
+      @media (min-width: 70em) { @content ; }
+   }
+    @else if $point == laptop {
+      @media (min-width: 64em) { @content ; }
+   }
+     @else if $point == tablet {
+      @media (min-width: 50em) { @content ; }
+   }
+    @else if $point == phablet {
+      @media (min-width: 37.5em)  { @content ; }
+   }
+   @else if $point == mobile {
+      @media (max-width: 37.5em)  { @content ; }
+ 
+   }
+ }

@@ -1,82 +1,43 @@
 <!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/main.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
   </head>
   <body>
-
-      <div class="wrapper">
-          <div class="chat-bubble">
-              <span>
-                  <i class="fas fa-times"></i>
-              </span>
+      <chat-backdrop></chat-backdrop>
+      <bubble-wrapper>
+          <bubble-message>
+              <span class="icon icon-close noselect"></span>
               Hello! How can I help you?
-          </div>
-          <div class="thumb"></div>
-      </div>
-      <div class="box">
-          <div class="header">
-              <h3>Roberto</h3>
-          </div>
-          <div class="body-messages">
-              <div class="message left">
-                  <div class="message-content">
-                      Hello! How can I help you?
-                  </div>
-                  <div class="message-info">
-                      just now
-                  </div>
-              </div>
-              <div class="message right">
-                    <div class="message-content">
-                        Hello!
-                    </div>
-                    <div class="message-info">
+            </bubble-message>
+            <chat-bubble class="noselect"></chat-bubble>
+        </bubble-wrapper>
+        <chat-box>      
+            <header>
+                <button class="no-glow noselect" id="close-chat">
+                    <span class="icon icon-close"></span>
+                </button>
+                <h3>Roberto</h3>
+            </header>
+            <chat-content>
+                <message-wrapper class="left">
+                    <message-content>
+                        Hello! How can I help you?
+                    </message-content>
+                    <message-info>
                         just now
-                    </div>
-                </div>
-                <div class="message left">
-                        <div class="message-content">
-                            Hello! How can I help you?
-                        </div>
-                        <div class="message-info">
-                            just now
-                        </div>
-                    </div>
-                    <div class="message right">
-                          <div class="message-content">
-                              Hello!
-                          </div>
-                          <div class="message-info">
-                              just now
-                          </div>
-                      </div>
-                      <div class="message left">
-                            <div class="message-content">
-                                Hello! How can I help you? I'm a smart bot created with the intent to help you
-                            </div>
-                            <div class="message-info">
-                                just now
-                            </div>
-                        </div>
-                        <div class="message right">
-                              <div class="message-content">
-                                  Hello!
-                              </div>
-                              <div class="message-info">
-                                  just now
-                              </div>
-                          </div>
-          </div>
-          <div class="footer">
-              <input type="text" id="userInput" placeholder="Digite sua mensagem...">
-              <button id="send">
-                  <span class="fas fa-paper-plane"></span>
-              </button>
-          </div>
-      </div>
+                    </message-info>
+                </message-wrapper>
+            </chat-content>
+            <footer class="footer">
+                <input type="text" class="no-glow" id="userInput" placeholder="Digite sua mensagem...">
+                <button id="send" class="no-glow">
+                    <span class="icon icon-paper-plane"></span>
+                </button>
+            </footer>
+      </chat-box>
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script type="text/javascript" src="js/main.js"></script>

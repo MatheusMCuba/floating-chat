@@ -1,0 +1,40 @@
+@import 'variables';
+@import 'mixins';
+
+$close-button-distance : ($header-height - $close-button-size) / 2;
+
+header{
+    width: 100%;
+    height: $header-height;
+    background: $main-background;
+    border-radius: 16px 16px 0 0;
+    color: white;
+    margin-top: -1px;
+    
+    @include flex-center;
+
+    button{
+        border: none;
+        background-color: transparent;
+        border-radius: 50%;
+        height: $close-button-size;
+        width: $close-button-size;
+        position: absolute;
+        top: $close-button-distance;
+        left: $close-button-distance;
+        color: white;
+        cursor: pointer;
+
+        @include flex-center;
+
+        &:hover{
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    }
+
+    h3{
+        font-size: $title-font-size;
+        font-weight: bold;
+        margin-top: 50px;
+    }
+}

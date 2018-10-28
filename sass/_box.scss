@@ -1,0 +1,29 @@
+@import 'variables';
+@import 'mixins';
+
+chat-box{
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    width: $box-width;
+    height: $box-height;
+    font-family: $main-font;
+    border-radius: 16px 16px 6px 6px;
+    z-index: 9999;
+    opacity: 0;
+    background-color: white;
+
+    @include transition(0.3s);
+    @include box-shadow($default-shadow-light);
+    @include transform(translateY($box-height));
+
+    &.active{
+        bottom: 15px;
+        opacity: 1;
+        @include transform(translateY(0));        
+    }
+
+    @import 'header';
+    @import 'content';
+    @import 'footer';
+}

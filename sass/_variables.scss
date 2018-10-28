@@ -1,1 +1,34 @@
-$main-color: red;
+// DEFAULT PROPERTIES
+$main-font: 'Lato', sans-serif;
+$default-shadow-strong: 5px 5px 15px 0px rgba(50, 50, 50, 0.5);
+$default-shadow-light: 5px 5px 15px 0px rgba(50, 50, 50, 0.2);
+
+// COLORS
+$main-color: #642b73;
+$main-background: linear-gradient(to right, #642b73, #c6426e);
+$secundary-color: #edeeef;
+
+// BUBBLE
+$bubble-size: 65px;
+$bubble-border-size: 2px;
+$bot-image: url('../img/bot.jpg');
+
+// BOX
+$box-width: 300px;
+$box-height: 440px;
+
+// BOX HEADER
+$header-height: 70px;
+$close-button-size: 40px;
+$title-font-size: 18px;
+
+// BOX MAIN
+$main-padding: 10px;
+$main-margin: 4px;
+
+// BOX FOOTER
+$footer-height: 50px;
+$footer-padding: 10px;
+$input-height: 40px;
+$input-padding: 10px;
+$input-border-size: 1px;

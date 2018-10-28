@@ -1,0 +1,55 @@
+@import 'variables';
+@import 'mixins';
+
+$button-size: $input-height + ($input-border-size * 2);
+
+footer {
+    width: calc(100% - #{$footer-padding * 2});
+    height: $footer-height;
+    padding: $footer-padding;
+
+    @include flex-center;
+
+    input {
+        width: calc(100% - #{($button-size + ($input-padding * 2))});
+        height: $input-height;
+        border: $input-border-size solid $main-color;
+        padding: 0 $input-padding;
+        border-top-left-radius: $input-height / 2;
+        border-bottom-left-radius: $input-height / 2;
+        color: $main-color;
+        font-family: $main-font;
+        border-right: none;
+
+        &::placeholder {
+            color: $main-color;
+            font-family: inherit;
+        }
+    }
+
+    button {
+        width: $button-size;
+        height: $button-size;
+        border-radius: 50%;
+        border: none;
+        background: $main-background;
+        color: white;
+        position: relative;
+        font-size: 18px;
+        cursor: pointer;
+
+        @include flex-center;
+
+        &:before { 
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: calc(100% - #{$input-border-size * 2});
+            top: 0;
+            left: 0;
+            border: $input-border-size solid $main-color; 
+            border-left: none;
+            z-index: -1;
+        }
+    }
+}
