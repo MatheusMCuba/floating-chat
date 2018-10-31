@@ -4,14 +4,14 @@ $default-shadow-strong: 5px 5px 15px 0px rgba(50, 50, 50, 0.5);
 $default-shadow-light: 5px 5px 15px 0px rgba(50, 50, 50, 0.2);
 
 // COLORS
-$main-color: #642b73;
-$main-background: linear-gradient(to right, #642b73, #c6426e);
+$main-color: '{{primary_color}}';
+$main-background: '{{background}}';
 $secundary-color: #edeeef;
 
 // BUBBLE
 $bubble-size: 65px;
 $bubble-border-size: 2px;
-$bot-image: url('../img/bot.jpg');
+$bot-image: url('{{image}}');
 
 // BOX
 $box-width: 300px;

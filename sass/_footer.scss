@@ -20,6 +20,7 @@ footer {
         color: $main-color;
         font-family: $main-font;
         border-right: none;
+        box-sizing: initial;
 
         &::placeholder {
             color: $main-color;

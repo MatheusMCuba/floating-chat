@@ -51,6 +51,7 @@ bubble-message{
     
     @include transition(0.2s);
     @include box-shadow($default-shadow-light);
+    @include no-select;
 
     &.close{
         display: none;
@@ -74,6 +75,7 @@ bubble-message{
         cursor: pointer;
 
         @include flex-center;
+        @include no-select;
 
         &:hover{
             background-color: rgb(211, 211, 211);

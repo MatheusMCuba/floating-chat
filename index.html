@@ -6,15 +6,15 @@
     <link rel="stylesheet" href="css/main.min.css">
   </head>
   <body>
-      <chat-backdrop></chat-backdrop>
-      <bubble-wrapper>
-          <bubble-message>
-              <span class="icon icon-close noselect"></span>
+        <chat-backdrop></chat-backdrop>
+        <bubble-wrapper>
+            <bubble-message>
+              <span class="icon icon-close"></span>
               Hello! How can I help you?
             </bubble-message>
-            <chat-bubble class="noselect"></chat-bubble>
+            <chat-bubble></chat-bubble>
         </bubble-wrapper>
-        <chat-box>      
+        <chat-box>
             <header>
                 <button class="no-glow noselect" id="close-chat">
                     <span class="icon icon-close"></span>
@@ -31,7 +31,7 @@
                     </message-info>
                 </message-wrapper>
             </chat-content>
-            <footer class="footer">
+            <footer>
                 <input type="text" class="no-glow" id="userInput" placeholder="Digite sua mensagem...">
                 <button id="send" class="no-glow">
                     <span class="icon icon-paper-plane"></span>
