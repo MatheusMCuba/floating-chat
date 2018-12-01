@@ -6,13 +6,14 @@
         self.url = "http://localhost:3000/"
 
         self.authToken = document.currentScript.getAttribute('auth');
-        self.chatToken  = document.currentScript.getAttribute('bot'); 
+        self.chatToken  = document.currentScript.getAttribute('bot');
+        self.context = '';
         
         self.config = {
-            name: 'Robert',
-            main_color: 'red',
-            main_background: 'white',
-            start_message: 'Olá como você vai?',
+            name: '',
+            main_color: '',
+            main_background: '',
+            start_message: '',
             animation_ms: 300,
             messages:{
                 input_placeholder: 'Digite sua mensagem...',
@@ -90,19 +91,18 @@
             mensagem.trigger();
         };
 
-
         self.configBot = function(fn){
-            console.log(self.url + 'loadBotConfig');
-            get(self.url + 'loadBotConfig', {
+            get(self.url + 'api/chatbot/config', {
                 h: self.authToken,
                 c: self.chatToken
-            }, function(data){
-                data = JSON.parse(data);
-                self.config.name = data.config.chatbot.name;
-                self.config.main_color = data.config.chatbot.primary_color;
-                self.config.main_background = data.config.chatbot.background;
-                self.config.style = data.style;
-                fn();
+            }, function(result){
+                result = JSON.parse(result);
+                if(result.status){
+                    self.config.name = result.data.name;
+                    self.config.style = result.data.style;
+                    self.config.start_message = result.data.starting_message[Math.floor(Math.random() * result.data.starting_message.length)];
+                    fn();
+                }
             }, function(e){
                 console.log(e);
             })
@@ -215,9 +215,19 @@
             self.elements.input.value = '';
             self.addMensagemUser(text);
 
-            // TODO COMUNICAÇÃO SERVER
+            var data = {
+                message: text,
+                context: self.context,
+                h: self.authToken,
+                c: self.chatToken
+            };
 
-            self.addMensagemBot(text);
+            sendRequest(self.url + "api/chatbot/send_message", function(data){
+                self.context = data.context;
+                Array.from(data.messages).forEach(function(message){
+                    self.addMensagemBot(message);
+                });
+            }, data);
         };
 
         self.closeStartMessage = function(){
@@ -254,6 +264,62 @@
         }
     }
 
+    function sendRequest(url,callback,postData) {
+        var req = createXMLHTTPObject();
+        if (!req) return;
+        var method = (postData) ? "POST" : "GET";
+        req.open(method,url,true); 
+        if (postData)
+            req.setRequestHeader('Content-type','application/json');
+
+        req.onreadystatechange = function () {
+            if (req.readyState != 4) return;
+            if (req.status != 200 && req.status != 304) {
+                return;
+            }
+
+            if(callback && typeof callback == "function") callback(JSON.parse(req.responseText));
+        }
+        if (req.readyState == 4) return;
+        req.send(postData ? JSON.stringify(postData) : {});
+    }
+    
+    var XMLHttpFactories = [
+        function () {return new XMLHttpRequest()},
+        function () {return new ActiveXObject("Msxml2.XMLHTTP")},
+        function () {return new ActiveXObject("Msxml3.XMLHTTP")},
+        function () {return new ActiveXObject("Microsoft.XMLHTTP")}
+    ];
+    
+    function createXMLHTTPObject() {
+        var xmlhttp = false;
+        for (var i=0;i<XMLHttpFactories.length;i++) {
+            try {
+                xmlhttp = XMLHttpFactories[i]();
+            }
+            catch (e) {
+                continue;
+            }
+            break;
+        }
+        return xmlhttp;
+    }
+
+    function post(url, data, success, error){
+        var request = new XMLHttpRequest();
+        request.open('POST', url, true);
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        request.send(data);
+
+        request.onload = function() {
+            if (request.status >= 200 && request.status < 400) {
+                success(request.responseText);
+            } else {
+                error(request.responseText);
+            }
+        };
+    }
+
     function get(url, data, success, error){
         var request = new XMLHttpRequest();
 
@@ -263,8 +329,6 @@
             url += int += prop + '=' +data[prop];
             int = '&';
         }
-
-        console.log(url);
 
         request.open('GET', url, true);
 

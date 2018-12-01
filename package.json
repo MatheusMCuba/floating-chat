@@ -13,13 +13,18 @@
   "author": "Matheus Cuba",
   "license": "ISC",
   "dependencies": {
+    "@cloudant/cloudant": "^2.4.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
     "express": "^4.16.4",
-    "firebase-admin": "^6.1.0",
     "gulp": "^3.9.1",
     "gulp-javascript-obfuscator": "^1.1.4",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
-    "nodemon": "^1.18.5"
+    "moment": "^2.22.2",
+    "nodemon": "^1.18.5",
+    "schema-object": "^4.0.11",
+    "watson-developer-cloud": "^3.13.0"
   },
   "bugs": {
     "url": "https://github.com/MatheusMCuba/floating-chat/issues"

@@ -1,0 +1,1 @@
+module.exports.validateColor = /^#([a-fA-F0-9]){3,6}$/gmi;

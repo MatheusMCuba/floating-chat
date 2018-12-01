@@ -15,3 +15,13 @@ module.exports.getByHashConfig = async function(hash, botHash){
     return user;
 };
 
+module.exports.getWatsonAuthentication = async function(hash, botHash){
+    let authRef = firebase.Database.ref(`user/${hash}/chatbot/${botHash}/auth`).get();
+    let auth;
+    await authRef.then(x=> x.forEach(y=> {
+         auth = y.data();
+    }))
+
+    return auth;
+};
+
